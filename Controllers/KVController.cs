@@ -24,16 +24,13 @@ namespace kvServer.Controllers
         [HttpPost]
         public async Task<ContentResult> Put()
         {
-            // P p = new P("hello", new CollectionV(){new P("felix", new ScalarV<string>("asd"))});
-            // var response = this.Request.CreateResponse(HttpStatusCode.OK);
-            // response.Content = new StringContent(p.ToJsonString(), Encoding.UTF8, "application/json");
-            // return response;
+            
             
             
             using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
             {  
                 var text = await reader.ReadToEndAsync();
-                // Console.WriteLine(text);
+                
                 
                 P p = P.FromString(text);
                 try
@@ -52,19 +49,14 @@ namespace kvServer.Controllers
         }
 
         [HttpGet("service/alive")]
-        public async Task<ContentResult> GetEcho()
-        {
-            // P p = new P("hello", new CollectionV(){new P("felix", new ScalarV<string>("asd"))});
-            // var response = this.Request.CreateResponse(HttpStatusCode.OK);
-            // response.Content = new StringContent(p.ToJsonString(), Encoding.UTF8, "application/json");
-            // return response;
-            
+        public ContentResult GetEcho()
+        {   
             return Content("UP");
         }
         
 
         [HttpGet("{key}")]
-        public async Task<ContentResult> Get(string key)
+        public ContentResult Get(string key)
         {
             // P p = new P("hello", new CollectionV(){new P("felix", new ScalarV<string>("asd"))});
             // var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -79,17 +71,11 @@ namespace kvServer.Controllers
         }
 
         [HttpDelete("{key}")]
-        public async Task<ContentResult> Delete(string key)
+        public ContentResult Delete(string key)
         {
-            // P p = new P("hello", new CollectionV(){new P("felix", new ScalarV<string>("asd"))});
-            // var response = this.Request.CreateResponse(HttpStatusCode.OK);
-            // response.Content = new StringContent(p.ToJsonString(), Encoding.UTF8, "application/json");
-            // return response;
             key = key[1..^1];
             _cache.delete(key);
             return Content("OK");
-            
-            
         }
     }
 }
