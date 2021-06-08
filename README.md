@@ -9,9 +9,9 @@ dotnet --info
 ```
 to confirm successful installation.
 
-Then inside a new folder download the private repository issuing
+Then inside a new folder download the repository issuing
 ```bash
-git clone https://felichio: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@github.com/felichio/KVServer.git
+git clone https://github.com/felichio/KVServer.git
 ```
 Navigate inside *KVServer* folder and build the executable
 ```bash
